@@ -3,6 +3,7 @@ class Node:
         self.val = val
         self.next = None
 
+
 def insert_node(head, value, index):
     new_node = Node(value)
     prev = None
@@ -20,4 +21,63 @@ def insert_node(head, value, index):
     
     return new_node if i == 0 else head
 
-print(insert_node(a, 'x', 2))
+
+# a = Node("a")
+# b = Node("b")
+# c = Node("c")
+# d = Node("d")
+
+# a.next = b
+# b.next = c
+# c.next = d
+
+# print(insert_node(a, 'x', 2))
+
+
+def add_lists(head_1, head_2):
+    carry = 0
+    sum = Node(None)
+    curr_1 = head_1
+    curr_2 = head_2
+    curr_sum = sum
+    place = 1
+    
+    while curr_2 or curr_1:
+        num_1 = curr_1.val if curr_1 else 0
+        num_2 = curr_2.val if curr_2 else 0
+        
+        temp_sum = num_1 + num_2 + carry
+        # print(num_1)
+        # print(num_2)
+        # print(temp_sum)
+        if temp_sum > 9:
+            carry = 1 
+            temp_sum -= 10
+        else:
+            carry = 0
+        
+        new_node = Node(temp_sum)
+        curr_sum.next = new_node
+        curr_sum = new_node
+        curr_1 = curr_1.next
+        curr_2 = curr_2.next
+        
+    return sum.next
+
+
+a1 = Node(1)
+a2 = Node(2)
+a3 = Node(6)
+a1.next = a2
+a2.next = a3
+# 1 -> 2 -> 6
+
+b1 = Node(4)
+b2 = Node(5)
+b3 = Node(3)
+b1.next = b2
+b2.next = b3
+# 4 -> 5 -> 3
+
+print(add_lists(a1, b1).val)
+# 5 -> 7 -> 9
