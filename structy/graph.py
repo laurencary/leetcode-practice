@@ -267,4 +267,94 @@ prereqs = [
   (3, 5),
   (0, 5),
 ]
-print(semesters_required(num_courses, prereqs)) # -> 3
+# print(semesters_required(num_courses, prereqs)) # -> 3
+
+
+def best_bridge(grid):
+  for r in range(len(grid)):
+    for c in range(len(grid[0])):
+      if grid[r][c] == "L":
+        island = set()
+        traverse_island(grid, r, c, island)
+        break
+
+  queue = deque([])
+  visited = set(island)
+  for pos in island:
+    r, c = pos
+    queue.append((r, c, 0))
+
+  while queue:
+    cr, cc, level = queue.popleft()
+    if grid[cr][cc] == "L" and (cr, cc) not in island:
+      return level - 1
+    else:
+      for neigh_pos in [[1,0], [0, 1],[-1,0], [0, -1]]:
+        nr = cr + neigh_pos[0]
+        nc = cc + neigh_pos[1]
+        if is_in_bounds(grid, nr, nc) and (nr, nc) not in visited:
+          visited.add((nr, nc))
+          queue.append((nr, nc, level + 1))
+
+
+def is_in_bounds(grid, row, col):
+  row_check = 0 <= row < len(grid)
+  col_check = 0 <= col < len(grid[0])
+  return row_check and col_check
+
+def traverse_island(grid, row, col, visited = set()):
+  if not is_in_bounds(grid, row, col) or grid[row][col] == "W":
+    return visited
+    
+  if (row, col) in visited:
+    return visited
+  
+  visited.add((row, col))
+  traverse_island(grid, row + 1, col, visited)
+  traverse_island(grid, row - 1, col, visited)
+  traverse_island(grid, row, col + 1, visited)
+  traverse_island(grid, row, col - 1, visited)
+
+  return visited
+
+
+grid = [
+  ["W", "W", "W", "W", "W"],
+  ["W", "W", "W", "W", "W"],
+  ["L", "L", "W", "W", "L"],
+  ["W", "L", "W", "W", "L"],
+  ["W", "W", "W", "L", "L"],
+  ["W", "W", "W", "W", "W"],
+]
+# print(best_bridge(grid)) # -> 1
+# print(traverse_island(grid, 0, 3))
+
+
+def has_cycle(graph):
+  grey = set()
+  black = set()
+  
+  for node in graph:
+    if node not in grey and node not in black:
+      stack = [node]
+      while stack:
+        curr = stack.pop()
+        print(curr)
+        print(grey)
+        if curr in grey: return True
+        grey.add(curr)
+        for neighbor in graph[curr]:
+          if neighbor not in black:
+            stack.append(neighbor)
+
+        
+      black.add(node)
+  return False
+
+
+print(has_cycle({
+  "a": ["b", "c"],
+  "b": ["c"],
+  "c": ["d"],
+  "d": [],
+})) # -> True
