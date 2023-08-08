@@ -352,9 +352,48 @@ def has_cycle(graph):
   return False
 
 
-print(has_cycle({
-  "a": ["b", "c"],
-  "b": ["c"],
-  "c": ["d"],
-  "d": [],
-})) # -> True
+# print(has_cycle({
+#   "a": ["b", "c"],
+#   "b": ["c"],
+#   "c": ["d"],
+#   "d": [],
+# })) # -> True
+
+
+def longest_path(graph):
+  max_path = 0 
+  distance = {}
+  for node, neighbors in graph.items():
+    if len(graph[node]) == 0:
+      distance[node] = 0
+    
+  for node in graph:
+    attempt = traverse_graph(graph, node, distance)
+    max_path = max(max_path, attempt)
+    
+  return max_path
+
+def traverse_graph(graph, node, distance):
+  print(distance)
+  if node in distance: return distance[node]
+  
+  for neighbor in graph[node]:
+    traverse_graph(graph, neighbor, distance)
+    
+  distance[node] = 1 + max(distance.values())
+  
+  return distance[node]
+
+
+graph = {
+  'a': ['c', 'b'],
+  'b': ['c'],
+  'c': [],
+  'q': ['r'],
+  'r': ['s', 'u', 't'],
+  's': ['t'],
+  't': ['u'],
+  'u': []
+}
+
+print(longest_path(graph))

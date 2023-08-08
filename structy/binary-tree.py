@@ -4,17 +4,17 @@ class Node:
         self.left = None
         self.right = None
 
-def path_finder(root, target, path = []):
-    if root.val == target: return path.append(root.val)
-    if root.left is None and root.right is None: return None
+# def path_finder(root, target, path = []):
+#     if root.val == target: return path.append(root.val)
+#     if root.left is None and root.right is None: return None
 
-    left, right = None, None
-    if root.left is not None:
-        left = path_finder(root.left, target, [*path,*root.val])
-    if root.right:
-        right = path_finder(root.right, target, [*path,*root.val])
+#     left, right = None, None
+#     if root.left is not None:
+#         left = path_finder(root.left, target, [*path,*root.val])
+#     if root.right:
+#         right = path_finder(root.right, target, [*path,*root.val])
     
-    return left or right
+#     return left or right
 
 a = Node("a")
 b = Node("b")
@@ -76,4 +76,39 @@ def tree_levels(root):
 
     return levels
 
-print(tree_levels(a))
+# print(tree_levels(a))
+
+
+def path_finder(root, target):
+  if not root: return None
+  if root.val == target: return [target]
+
+  left_path = path_finder(root.left, target)
+  right_path = path_finder(root.right, target)
+
+  if left_path: return [root.val, *left_path]
+  if right_path: return [root.val, *right_path]
+
+  return None
+
+
+a = Node("a")
+b = Node("b")
+c = Node("c")
+d = Node("d")
+e = Node("e")
+f = Node("f")
+
+a.left = b
+a.right = c
+b.left = d
+b.right = e
+c.right = f
+
+#      a
+#    /   \
+#   b     c
+#  / \     \
+# d   e     f
+
+print(path_finder(a, 'e')) # -> [ 'a', 'b', 'e' ]
