@@ -79,5 +79,6 @@ b1.next = b2
 b2.next = b3
 # 4 -> 5 -> 3
 
-print(add_lists(a1, b1).val)
+# print(add_lists(a1, b1).val)
 # 5 -> 7 -> 9
+
