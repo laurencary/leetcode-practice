@@ -5,154 +5,154 @@ const { LRUCache, LRUCacheItem } = require('../lib/4_lru_cache.js');
 
 const { expect } = require('chai');
 
-describe('Problem 1: reverseLinkedList', () => {
-    let linkedList;
-    let result;
-    let expected;
-
-    beforeEach(() => {
-        linkedList = new LinkedList();
-        expected = new LinkedList();
-    });
-
-    it('Should exist', () => {
-        expect(reverseLinkedList).to.exist;
-    });
-
-    it('Should be a function', () => {
-        expect(reverseLinkedList).to.be.a('function');
-    });
-
-    it('Should return a LinkedList object', () => {
-        linkedList.addToTail('First');
-        result = reverseLinkedList(linkedList);
-
-        expect(result).to.exist;
-        expect(result).to.be.an.instanceof(Object);
-    });
-
-    it('Should return the same list if head.next is null', () => {
-        linkedList.addToTail('First');
-        result = reverseLinkedList(linkedList);
-
-        expect(result).to.eql(linkedList);
-    });
-
-    it('Should reverse a very short list of only two nodes', () => {
-        linkedList.addToTail('First');
-        linkedList.addToTail('Second');
-        result = reverseLinkedList(linkedList);
-
-        expected.addToTail('Second');
-        expected.addToTail('First');
-
-        expect(result).to.eql(expected);
-    });
-
-    // it('Should reverse a medium length list', () => {
-    //     linkedList.addToTail('First');
-    //     for (let i = 1; i <= 50; i++) linkedList.addToTail('First + ' + i);
-    //     result = reverseLinkedList(linkedList);
-
-    //     for (let j = 50; j > 0; j--) expected.addToTail('First + ' + j);
-    //     expected.addToTail('First');
-
-    //     expect(result).to.eql(expected);
-    // });
-
-    // it('Should reverse a very long list', () => {
-    //     linkedList.addToTail('First');
-    //     for (let i = 1; i <= 1000; i++) linkedList.addToTail('First + ' + i);
-    //     result = reverseLinkedList(linkedList);
-
-    //     for (let j = 1000; j > 0; j--) expected.addToTail('First + ' + j);
-    //     expected.addToTail('First');
-
-    //     expect(result).to.eql(expected);
-    // });
-});
-
-// describe('Problem 2: linkedListIntersection', function () {
-//     let list1;
-//     let list2;
-//     let expected;
+// describe('Problem 1: reverseLinkedList', () => {
+//     let linkedList;
 //     let result;
+//     let expected;
 
 //     beforeEach(() => {
-//         list1 = new LinkedList();
-//         list2 = new LinkedList();
+//         linkedList = new LinkedList();
+//         expected = new LinkedList();
 //     });
 
-//     it('Should exist', function () {
-//         expect(linkedListIntersection).to.exist;
+//     it('Should exist', () => {
+//         expect(reverseLinkedList).to.exist;
 //     });
 
-//     it('Should be a function', function () {
-//         expect(linkedListIntersection).to.be.a('function');
+//     it('Should be a function', () => {
+//         expect(reverseLinkedList).to.be.a('function');
 //     });
 
-//     it('Should return the correct node in the case of two merged linked lists of the same size', function () {
-//         let nodeD;
-//         let nodeZ;
+//     it('Should return a LinkedList object', () => {
+//         linkedList.addToTail('First');
+//         result = reverseLinkedList(linkedList);
 
-//         list1.addToTail('A');
-//         list1.addToTail('B');
-//         list1.addToTail('C');
-//         list1.addToTail('D');
-//         list1.addToTail('E');
-//         list1.addToTail('F');
-
-//         list2.addToTail('X');
-//         list2.addToTail('Y');
-//         list2.addToTail('Z');
-
-//         nodeD = list1.get(3);
-//         nodeZ = list2.get(2);
-
-//         nodeZ.next = nodeD;
-
-//         expected = 'DEF';
-//         result = stringify(linkedListIntersection(list1, list2));
-
-//         expect(result).to.equal(expected);
+//         expect(result).to.exist;
+//         expect(result).to.be.an.instanceof(Object);
 //     });
 
+//     it('Should return the same list if head.next is null', () => {
+//         linkedList.addToTail('First');
+//         result = reverseLinkedList(linkedList);
 
-//     it('Should return the correct node in the case of two merged linked lists of different sizes', function () {
-//         let nodeD;
-//         let nodeY;
-
-//         list1.addToTail('A');
-//         list1.addToTail('B');
-//         list1.addToTail('C');
-//         list1.addToTail('D');
-//         list1.addToTail('E');
-//         list1.addToTail('F');
-
-//         list2.addToTail('X');
-//         list2.addToTail('Y');
-
-//         nodeD = list1.get(3);
-//         nodeY = list2.get(1);
-
-//         nodeY.next = nodeD;
-
-//         expected = 'DEF';
-//         result = stringify(linkedListIntersection(list1, list2));
-
-//         expect(result).to.equal(expected);
+//         expect(result).to.eql(linkedList);
 //     });
 
-//     it('Should return null if the two lists have no intersection', function () {
-//         list1.addToTail('A');
-//         list2.addToTail('X');
+//     it('Should reverse a very short list of only two nodes', () => {
+//         linkedList.addToTail('First');
+//         linkedList.addToTail('Second');
+//         result = reverseLinkedList(linkedList);
 
-//         expected = null;
-//         result = linkedListIntersection(list1, list2);
+//         expected.addToTail('Second');
+//         expected.addToTail('First');
 
-//         expect(result).to.equal(expected);
+//         expect(result).to.eql(expected);
+//     });
+
+//     it('Should reverse a medium length list', () => {
+//         linkedList.addToTail('First');
+//         for (let i = 1; i <= 50; i++) linkedList.addToTail('First + ' + i);
+//         result = reverseLinkedList(linkedList);
+
+//         for (let j = 50; j > 0; j--) expected.addToTail('First + ' + j);
+//         expected.addToTail('First');
+
+//         expect(result).to.eql(expected);
+//     });
+
+//     it('Should reverse a very long list', () => {
+//         linkedList.addToTail('First');
+//         for (let i = 1; i <= 1000; i++) linkedList.addToTail('First + ' + i);
+//         result = reverseLinkedList(linkedList);
+
+//         for (let j = 1000; j > 0; j--) expected.addToTail('First + ' + j);
+//         expected.addToTail('First');
+
+//         expect(result).to.eql(expected);
 //     });
 // });
+
+describe('Problem 2: linkedListIntersection', function () {
+    let list1;
+    let list2;
+    let expected;
+    let result;
+
+    beforeEach(() => {
+        list1 = new LinkedList();
+        list2 = new LinkedList();
+    });
+
+    it('Should exist', function () {
+        expect(linkedListIntersection).to.exist;
+    });
+
+    it('Should be a function', function () {
+        expect(linkedListIntersection).to.be.a('function');
+    });
+
+    it('Should return the correct node in the case of two merged linked lists of the same size', function () {
+        let nodeD;
+        let nodeZ;
+
+        list1.addToTail('A');
+        list1.addToTail('B');
+        list1.addToTail('C');
+        list1.addToTail('D');
+        list1.addToTail('E');
+        list1.addToTail('F');
+
+        list2.addToTail('X');
+        list2.addToTail('Y');
+        list2.addToTail('Z');
+
+        nodeD = list1.get(3);
+        nodeZ = list2.get(2);
+
+        nodeZ.next = nodeD;
+
+        expected = 'DEF';
+        result = stringify(linkedListIntersection(list1, list2));
+
+        expect(result).to.equal(expected);
+    });
+
+
+    it('Should return the correct node in the case of two merged linked lists of different sizes', function () {
+        let nodeD;
+        let nodeY;
+
+        list1.addToTail('A');
+        list1.addToTail('B');
+        list1.addToTail('C');
+        list1.addToTail('D');
+        list1.addToTail('E');
+        list1.addToTail('F');
+
+        list2.addToTail('X');
+        list2.addToTail('Y');
+
+        nodeD = list1.get(3);
+        nodeY = list2.get(1);
+
+        nodeY.next = nodeD;
+
+        expected = 'DEF';
+        result = stringify(linkedListIntersection(list1, list2));
+
+        expect(result).to.equal(expected);
+    });
+
+    it('Should return null if the two lists have no intersection', function () {
+        list1.addToTail('A');
+        list2.addToTail('X');
+
+        expected = null;
+        result = linkedListIntersection(list1, list2);
+
+        expect(result).to.equal(expected);
+    });
+});
 
 // describe('Problem 3: hasCycle', () => {
 //     let linkedList;
