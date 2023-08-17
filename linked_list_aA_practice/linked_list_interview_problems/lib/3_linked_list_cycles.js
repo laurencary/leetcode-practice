@@ -61,7 +61,7 @@
 // -----------
 function hasCycle(linkedList) {
   // TODO: Implement the hasCycle function!
-
+  return linkedList.tail.next !== null
 }
 
 

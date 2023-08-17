@@ -72,285 +72,285 @@ const { expect } = require('chai');
 //     });
 // });
 
-describe('Problem 2: linkedListIntersection', function () {
-    let list1;
-    let list2;
-    let expected;
-    let result;
-
-    beforeEach(() => {
-        list1 = new LinkedList();
-        list2 = new LinkedList();
-    });
-
-    it('Should exist', function () {
-        expect(linkedListIntersection).to.exist;
-    });
-
-    it('Should be a function', function () {
-        expect(linkedListIntersection).to.be.a('function');
-    });
-
-    it('Should return the correct node in the case of two merged linked lists of the same size', function () {
-        let nodeD;
-        let nodeZ;
-
-        list1.addToTail('A');
-        list1.addToTail('B');
-        list1.addToTail('C');
-        list1.addToTail('D');
-        list1.addToTail('E');
-        list1.addToTail('F');
-
-        list2.addToTail('X');
-        list2.addToTail('Y');
-        list2.addToTail('Z');
-
-        nodeD = list1.get(3);
-        nodeZ = list2.get(2);
-
-        nodeZ.next = nodeD;
-
-        expected = 'DEF';
-        result = stringify(linkedListIntersection(list1, list2));
-
-        expect(result).to.equal(expected);
-    });
-
-
-    it('Should return the correct node in the case of two merged linked lists of different sizes', function () {
-        let nodeD;
-        let nodeY;
-
-        list1.addToTail('A');
-        list1.addToTail('B');
-        list1.addToTail('C');
-        list1.addToTail('D');
-        list1.addToTail('E');
-        list1.addToTail('F');
-
-        list2.addToTail('X');
-        list2.addToTail('Y');
-
-        nodeD = list1.get(3);
-        nodeY = list2.get(1);
-
-        nodeY.next = nodeD;
-
-        expected = 'DEF';
-        result = stringify(linkedListIntersection(list1, list2));
-
-        expect(result).to.equal(expected);
-    });
-
-    it('Should return null if the two lists have no intersection', function () {
-        list1.addToTail('A');
-        list2.addToTail('X');
-
-        expected = null;
-        result = linkedListIntersection(list1, list2);
-
-        expect(result).to.equal(expected);
-    });
-});
-
-// describe('Problem 3: hasCycle', () => {
-//     let linkedList;
+// describe('Problem 2: linkedListIntersection', function () {
+//     let list1;
+//     let list2;
+//     let expected;
 //     let result;
 
 //     beforeEach(() => {
-//         linkedList = new LinkedList();
+//         list1 = new LinkedList();
+//         list2 = new LinkedList();
 //     });
 
-//     it('Should exist', () => {
-//         expect(hasCycle).to.exist;
+//     it('Should exist', function () {
+//         expect(linkedListIntersection).to.exist;
 //     });
 
-//     it('Should be a function', () => {
-//         expect(hasCycle).to.be.a('function');
+//     it('Should be a function', function () {
+//         expect(linkedListIntersection).to.be.a('function');
 //     });
 
-//     it('Should take at least one argument', () => {
-//         expect(hasCycle.length).to.be.above(0);
+//     it('Should return the correct node in the case of two merged linked lists of the same size', function () {
+//         let nodeD;
+//         let nodeZ;
+
+//         list1.addToTail('A');
+//         list1.addToTail('B');
+//         list1.addToTail('C');
+//         list1.addToTail('D');
+//         list1.addToTail('E');
+//         list1.addToTail('F');
+
+//         list2.addToTail('X');
+//         list2.addToTail('Y');
+//         list2.addToTail('Z');
+
+//         nodeD = list1.get(3);
+//         nodeZ = list2.get(2);
+
+//         nodeZ.next = nodeD;
+
+//         expected = 'DEF';
+//         result = stringify(linkedListIntersection(list1, list2));
+
+//         expect(result).to.equal(expected);
 //     });
 
-//     it('Should return something', () => {
-//         linkedList.addToTail('First');
 
-//         result = hasCycle(linkedList);
-//         expect(result).to.exist;
+//     it('Should return the correct node in the case of two merged linked lists of different sizes', function () {
+//         let nodeD;
+//         let nodeY;
+
+//         list1.addToTail('A');
+//         list1.addToTail('B');
+//         list1.addToTail('C');
+//         list1.addToTail('D');
+//         list1.addToTail('E');
+//         list1.addToTail('F');
+
+//         list2.addToTail('X');
+//         list2.addToTail('Y');
+
+//         nodeD = list1.get(3);
+//         nodeY = list2.get(1);
+
+//         nodeY.next = nodeD;
+
+//         expected = 'DEF';
+//         result = stringify(linkedListIntersection(list1, list2));
+
+//         expect(result).to.equal(expected);
 //     });
 
-//     it('Should return a boolean', () => {
-//         linkedList.addToTail('First');
+//     it('Should return null if the two lists have no intersection', function () {
+//         list1.addToTail('A');
+//         list2.addToTail('X');
 
-//         result = hasCycle(linkedList);
-//         expect(result).to.be.a('Boolean');
-//     });
+//         expected = null;
+//         result = linkedListIntersection(list1, list2);
 
-//     it('Should return false for a linked list with only 1 node that ponits to null', () => {
-//         linkedList.addToTail('First');
-
-//         result = hasCycle(linkedList);
-//         expect(result).to.be.false;
-//     });
-
-//     it('Should return true for a linked list with only 1 node that points to itself', () => {
-//         linkedList.addToTail('First');
-//         linkedList.tail.next = linkedList.head;
-
-//         result = hasCycle(linkedList);
-//         expect(result).to.be.true;
-//     });
-
-//     it('Should return false for a non-cyclical linked list of size 2', () => {
-//         linkedList.addToTail('First');
-//         linkedList.addToTail('Second');
-
-//         result = hasCycle(linkedList);
-//         expect(result).to.be.false;
-//     });
-
-//     it('Should return true for a cyclical linked list of size 2', () => {
-//         linkedList.addToTail('First');
-//         linkedList.addToTail('Second');
-//         linkedList.tail.next = linkedList.head;
-
-//         result = hasCycle(linkedList);
-//         expect(result).to.be.true;
-//     });
-
-//     it('Should return false for a non-cyclical linked list of size 4', () => {
-//         linkedList.addToTail('First');
-//         linkedList.addToTail('Second');
-//         linkedList.addToTail('Third');
-//         linkedList.addToTail('Fourth');
-
-//         result = hasCycle(linkedList);
-//         expect(result).to.be.false;
-//     });
-
-//     it('Should return true for a cyclical linked list of size 4 where the tail links to the head', () => {
-//         linkedList.addToTail('First');
-//         linkedList.addToTail('Second');
-//         linkedList.addToTail('Third');
-//         linkedList.addToTail('Fourth');
-//         linkedList.tail.next = linkedList.head;
-
-//         result = hasCycle(linkedList);
-//         expect(result).to.be.true;
-//     });
-
-//     it('Should return true for a cyclical linked list of size 4 where the tail links to a node in the middle of the list', () => {
-//         let secondNode;
-
-//         linkedList.addToTail('First');
-//         linkedList.addToTail('Second');
-//         linkedList.addToTail('Third');
-//         linkedList.addToTail('Fourth');
-//         secondNode = linkedList.get(1);
-//         linkedList.tail.next = secondNode;
-
-//         result = hasCycle(linkedList);
-//         expect(result).to.be.true;
-//     });
-
-//     it('Should return false for a non-cyclical linked list of size 5', () => {
-//         linkedList.addToTail('First');
-//         linkedList.addToTail('Second');
-//         linkedList.addToTail('Third');
-//         linkedList.addToTail('Fourth');
-//         linkedList.addToTail('Fifth');
-
-//         result = hasCycle(linkedList);
-//         expect(result).to.be.false;
-//     });
-
-//     it('Should return true for a cyclical linked list of size 5 where the tail links to the head', () => {
-//         linkedList.addToTail('First');
-//         linkedList.addToTail('Second');
-//         linkedList.addToTail('Third');
-//         linkedList.addToTail('Fourth');
-//         linkedList.addToTail('Fifth');
-//         linkedList.tail.next = linkedList.head;
-
-//         result = hasCycle(linkedList);
-//         expect(result).to.be.true;
-//     });
-
-//     it('Should return true for a cyclical linked list of size 5 where the tail links to a node in the middle of the list', () => {
-//         let secondNode;
-
-//         linkedList.addToTail('First');
-//         linkedList.addToTail('Second');
-//         linkedList.addToTail('Third');
-//         linkedList.addToTail('Fourth');
-//         linkedList.addToTail('Fifth');
-//         secondNode = linkedList.get(1);
-//         linkedList.tail.next = secondNode;
-
-//         result = hasCycle(linkedList);
-//         expect(result).to.be.true;
-//     });
-
-//     it('Should return false for a medium-sized non-cyclical linked list', () => {
-//         linkedList.addToTail('First');
-//         for (let i = 1; i < 101; i++) linkedList.addToTail('First + ' + i);
-
-//         result = hasCycle(linkedList);
-//         expect(result).to.be.false;
-//     });
-
-//     it('Should return true for a medium-sized cyclical linked list where the tail links to the head', () => {
-//         linkedList.addToTail('First');
-//         for (let i = 1; i < 101; i++) linkedList.addToTail('First + ' + i);
-//         linkedList.tail.next = linkedList.head;
-
-//         result = hasCycle(linkedList);
-//         expect(result).to.be.true;
-//     });
-
-//     it('Should return true for a medium-sized cyclical linked list where the tail links to a node in the middle of the list', () => {
-//         let fiftiethNode;
-
-//         linkedList.addToTail('First');
-//         for (let i = 1; i < 101; i++) linkedList.addToTail('First + ' + i);
-//         fiftiethNode = linkedList.get(49);
-//         linkedList.tail.next = fiftiethNode;
-
-//         result = hasCycle(linkedList);
-//         expect(result).to.be.true;
-//     });
-
-//     it('Should return false for a large-sized non-cyclical linked list', () => {
-//         linkedList.addToTail('First');
-//         for (let i = 1; i < 1000000; i++) linkedList.addToTail('First + ' + i);
-
-//         result = hasCycle(linkedList);
-//         expect(result).to.be.false;
-//     });
-
-//     it('Should return true for a large-sized cyclical linked list where the tail links to the head', () => {
-//         linkedList.addToTail('First');
-//         for (let i = 1; i < 1000000; i++) linkedList.addToTail('First + ' + i);
-//         linkedList.tail.next = linkedList.head;
-
-//         result = hasCycle(linkedList);
-//         expect(result).to.be.true;
-//     });
-
-//     it('Should return true for a large-sized cyclical linked list where the tail links to a node in the middle of the list', () => {
-//         let fiveHundredThousandthNode;
-
-//         linkedList.addToTail('First');
-//         for (let i = 1; i < 1000000; i++) linkedList.addToTail('First + ' + i);
-//         fiveHundredThousandthNode = linkedList.get(499999);
-//         linkedList.tail.next = fiveHundredThousandthNode;
-
-//         result = hasCycle(linkedList);
-//         expect(result).to.be.true;
+//         expect(result).to.equal(expected);
 //     });
 // });
+
+describe('Problem 3: hasCycle', () => {
+    let linkedList;
+    let result;
+
+    beforeEach(() => {
+        linkedList = new LinkedList();
+    });
+
+    it('Should exist', () => {
+        expect(hasCycle).to.exist;
+    });
+
+    it('Should be a function', () => {
+        expect(hasCycle).to.be.a('function');
+    });
+
+    it('Should take at least one argument', () => {
+        expect(hasCycle.length).to.be.above(0);
+    });
+
+    it('Should return something', () => {
+        linkedList.addToTail('First');
+
+        result = hasCycle(linkedList);
+        expect(result).to.exist;
+    });
+
+    it('Should return a boolean', () => {
+        linkedList.addToTail('First');
+
+        result = hasCycle(linkedList);
+        expect(result).to.be.a('Boolean');
+    });
+
+    it('Should return false for a linked list with only 1 node that ponits to null', () => {
+        linkedList.addToTail('First');
+
+        result = hasCycle(linkedList);
+        expect(result).to.be.false;
+    });
+
+    it('Should return true for a linked list with only 1 node that points to itself', () => {
+        linkedList.addToTail('First');
+        linkedList.tail.next = linkedList.head;
+
+        result = hasCycle(linkedList);
+        expect(result).to.be.true;
+    });
+
+    it('Should return false for a non-cyclical linked list of size 2', () => {
+        linkedList.addToTail('First');
+        linkedList.addToTail('Second');
+
+        result = hasCycle(linkedList);
+        expect(result).to.be.false;
+    });
+
+    it('Should return true for a cyclical linked list of size 2', () => {
+        linkedList.addToTail('First');
+        linkedList.addToTail('Second');
+        linkedList.tail.next = linkedList.head;
+
+        result = hasCycle(linkedList);
+        expect(result).to.be.true;
+    });
+
+    it('Should return false for a non-cyclical linked list of size 4', () => {
+        linkedList.addToTail('First');
+        linkedList.addToTail('Second');
+        linkedList.addToTail('Third');
+        linkedList.addToTail('Fourth');
+
+        result = hasCycle(linkedList);
+        expect(result).to.be.false;
+    });
+
+    it('Should return true for a cyclical linked list of size 4 where the tail links to the head', () => {
+        linkedList.addToTail('First');
+        linkedList.addToTail('Second');
+        linkedList.addToTail('Third');
+        linkedList.addToTail('Fourth');
+        linkedList.tail.next = linkedList.head;
+
+        result = hasCycle(linkedList);
+        expect(result).to.be.true;
+    });
+
+    it('Should return true for a cyclical linked list of size 4 where the tail links to a node in the middle of the list', () => {
+        let secondNode;
+
+        linkedList.addToTail('First');
+        linkedList.addToTail('Second');
+        linkedList.addToTail('Third');
+        linkedList.addToTail('Fourth');
+        secondNode = linkedList.get(1);
+        linkedList.tail.next = secondNode;
+
+        result = hasCycle(linkedList);
+        expect(result).to.be.true;
+    });
+
+    it('Should return false for a non-cyclical linked list of size 5', () => {
+        linkedList.addToTail('First');
+        linkedList.addToTail('Second');
+        linkedList.addToTail('Third');
+        linkedList.addToTail('Fourth');
+        linkedList.addToTail('Fifth');
+
+        result = hasCycle(linkedList);
+        expect(result).to.be.false;
+    });
+
+    it('Should return true for a cyclical linked list of size 5 where the tail links to the head', () => {
+        linkedList.addToTail('First');
+        linkedList.addToTail('Second');
+        linkedList.addToTail('Third');
+        linkedList.addToTail('Fourth');
+        linkedList.addToTail('Fifth');
+        linkedList.tail.next = linkedList.head;
+
+        result = hasCycle(linkedList);
+        expect(result).to.be.true;
+    });
+
+    it('Should return true for a cyclical linked list of size 5 where the tail links to a node in the middle of the list', () => {
+        let secondNode;
+
+        linkedList.addToTail('First');
+        linkedList.addToTail('Second');
+        linkedList.addToTail('Third');
+        linkedList.addToTail('Fourth');
+        linkedList.addToTail('Fifth');
+        secondNode = linkedList.get(1);
+        linkedList.tail.next = secondNode;
+
+        result = hasCycle(linkedList);
+        expect(result).to.be.true;
+    });
+
+    it('Should return false for a medium-sized non-cyclical linked list', () => {
+        linkedList.addToTail('First');
+        for (let i = 1; i < 101; i++) linkedList.addToTail('First + ' + i);
+
+        result = hasCycle(linkedList);
+        expect(result).to.be.false;
+    });
+
+    it('Should return true for a medium-sized cyclical linked list where the tail links to the head', () => {
+        linkedList.addToTail('First');
+        for (let i = 1; i < 101; i++) linkedList.addToTail('First + ' + i);
+        linkedList.tail.next = linkedList.head;
+
+        result = hasCycle(linkedList);
+        expect(result).to.be.true;
+    });
+
+    it('Should return true for a medium-sized cyclical linked list where the tail links to a node in the middle of the list', () => {
+        let fiftiethNode;
+
+        linkedList.addToTail('First');
+        for (let i = 1; i < 101; i++) linkedList.addToTail('First + ' + i);
+        fiftiethNode = linkedList.get(49);
+        linkedList.tail.next = fiftiethNode;
+
+        result = hasCycle(linkedList);
+        expect(result).to.be.true;
+    });
+
+    it('Should return false for a large-sized non-cyclical linked list', () => {
+        linkedList.addToTail('First');
+        for (let i = 1; i < 1000000; i++) linkedList.addToTail('First + ' + i);
+
+        result = hasCycle(linkedList);
+        expect(result).to.be.false;
+    });
+
+    it('Should return true for a large-sized cyclical linked list where the tail links to the head', () => {
+        linkedList.addToTail('First');
+        for (let i = 1; i < 1000000; i++) linkedList.addToTail('First + ' + i);
+        linkedList.tail.next = linkedList.head;
+
+        result = hasCycle(linkedList);
+        expect(result).to.be.true;
+    });
+
+    it('Should return true for a large-sized cyclical linked list where the tail links to a node in the middle of the list', () => {
+        let fiveHundredThousandthNode;
+
+        linkedList.addToTail('First');
+        for (let i = 1; i < 1000000; i++) linkedList.addToTail('First + ' + i);
+        fiveHundredThousandthNode = linkedList.get(499999);
+        linkedList.tail.next = fiveHundredThousandthNode;
+
+        result = hasCycle(linkedList);
+        expect(result).to.be.true;
+    });
+});
 
 // describe('Problem 4: LRUCache', () => {
 //     let lruCache;
