@@ -82,3 +82,22 @@ b2.next = b3
 # print(add_lists(a1, b1).val)
 # 5 -> 7 -> 9
 
+[def seq_of_numbers(string):
+    result = ''
+    seq_count = 0
+    curr_char = string[0]
+    
+    for char in string:
+        if char == curr_char:
+            seq_count += 1
+        else:
+            result += str(seq_count) + curr_char
+            print(result)
+            count = 1
+            curr_char = char
+
+    result += str(seq_count) + curr_char
+            
+    return result]
+
+print(seq_of_numbers("1211"))
