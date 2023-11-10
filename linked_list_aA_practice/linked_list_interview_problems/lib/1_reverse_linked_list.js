@@ -117,3 +117,9 @@ class LinkedList {
 exports.Node = Node;
 exports.LinkedList = LinkedList;
 exports.reverseLinkedList = reverseLinkedList;
+
+
+for (let index = 0; index < array.length; index++) {
+  const element = array[index];
+  
+}
